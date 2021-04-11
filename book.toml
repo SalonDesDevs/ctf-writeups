@@ -1,0 +1,6 @@
+[book]
+authors = ["Clément Guibout <clement.guibout@gmail.com>"]
+language = "fr"
+multilingual = false
+src = "src"
+title = "CTF Writeups"
