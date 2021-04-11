@@ -14,7 +14,7 @@ Lien du challenge : http://android-cloud.phack.fr
 
 En arrivant sur le site, on a un téléphone Android qui est verrouillé par un pattern. On peut essayer d'en faire au hasard, mais cela n'affiche juste "Wrong code". Il faut trouver une manière de le deviner.
 
-![image-20210403193523500](C:\Users\cleme\AppData\Roaming\Typora\typora-user-images\image-20210403193523500.png)
+![image-20210403193523500](https://i.imgur.com/Z03CnWH.png)
 
 En bas à gauche du site, on a une rubrique "Last <u>backup</u> on Sat Mar 10 2020, 17:16:18 (UTC+1)". En cliquant sur le mot souligné "backup", on arrive sur le code d'un fichier .php dont voici le début:
 
@@ -38,7 +38,7 @@ Grâce à la suite du code, on sait que les backups sont stockées dans le dossi
 
 On a donc le chemin complet de la dernière backup: `url/dev-backups/backup@03-10-2020.zip`, ce qui nous fait télécharger l'archive quand on s'y rend. Une fois l'archive téléchargée, on la décompresse et on obtient ce qui semble être un système Android:
 
-![image-20210403194727409](C:\Users\cleme\AppData\Roaming\Typora\typora-user-images\image-20210403194727409.png)
+![image-20210403194727409](https://i.imgur.com/NsrIx08.png)
 
 On va donc essayer de cracker le code avec le fichier ou il est stocké, ``gesture.key`` dans ``data/system/gesture.key``.
 
@@ -78,6 +78,6 @@ It took: 0.6148 seconds
 
 On obtient le code ainsi que le chemin à dessiner, qu'on peut directement faire sur le site:
 
-![image-20210403195755304](C:\Users\cleme\AppData\Roaming\Typora\typora-user-images\image-20210403195755304.png)
+![image-20210403195755304](https://i.imgur.com/mnl3UcM.png)
 
 **Flag: ``PHACK{T4kec4rE_oF_Ur_B4cKupS!}``**
