@@ -3,6 +3,8 @@
 - [CTF Writeups](./README.md)
 
 - [Phack2021]()
+  - [Amuse_bouche]()
+    - [WE-1](./Phack2021/Amuse_bouche/WE-1/README.md)
   - [Forensics]()
     - [Android_Cloud](./Phack2021/Forensics/Android_Cloud/README.md)
     - [Git_de_France](./Phack2021/Forensics/Git_de_France/README.md)
@@ -13,3 +15,9 @@
   - [Reverse]()
     - [tendu_comme_un_slip](./Phack2021/Reverse/tendu_comme_un_slip/README.md)
     - [no_strings](./Phack2021/Reverse/no_strings/README.md)
+  - [OSINT]()
+    - [Mr_weak](./Phack2021/OSINT/Mr_weak/README.md)
+    - [sauce.io](./Phack2021/OSINT/sauce.io/README.md)
+  - [Network]()
+    - [journées_portes_ouvertes](./Phack2021/Network/journées_portes_ouvertes/README.md)
+    - [Système_nom_de_domaine](./Phack2021/Network/Sys_nom_domaine/README.md)
