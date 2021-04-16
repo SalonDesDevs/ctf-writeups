@@ -26,10 +26,10 @@ Cette partie du challenge est selon moi plus facile que la précédente. Étant 
 On y voit tout les processus, y compris un qui semble suspect: "powershell.exe". On nous donne l'ip et le port sous la forme demandé, il ne nous resque plus qu'à l'encoder et à tester le flag.
 
 ```shell
-$ echo "185.13.37.99:1337" | base64
-MTg1LjEzLjM3Ljk5OjEzMzcK
+$ echo -n "185.13.37.99:1337" | base64
+MTg1LjEzLjM3Ljk5OjEzMzc=
 ```
 
 On reçoit les points en ajoutant l'enrobage, bingo!
 
-**Flag: `PHACK{MTg1LjEzLjM3Ljk5OjEzMzcK}`**
+**Flag: `PHACK{MTg1LjEzLjM3Ljk5OjEzMzc=}`**
