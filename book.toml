@@ -4,3 +4,4 @@ language = "fr"
 multilingual = false
 src = "src"
 title = "CTF Writeups"
+create-missing = true
