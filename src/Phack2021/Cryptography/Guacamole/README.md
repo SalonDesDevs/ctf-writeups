@@ -1,0 +1,3 @@
+# Guacamole - 128 points
+
+On est face à un chiffrement qui porte sur les lettres, emphase est faite sur le mot "avocat". Des traumatismes d'enfance permettent d'immédiatement comprendre qu'il s'agit de la clé : "A vaut K" ; il s'agit d'un chiffrement par décalage (ou de César quand on ne sait pas que César chiffrait uniquement avec un décalage de 3). On peut aisément décoder celui-ci avec un site comme [dCode](https://www.dcode.fr/chiffre-cesar).
