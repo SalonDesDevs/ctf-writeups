@@ -1,0 +1,4 @@
+# WE-3 (Checkmate) - 64 points
+
+L'archive necessite un mot de passe pour etre décompresser, mais on a un indice sur le mot de passe: c'est une ville français en minuscule.
+On recupere un json qui contient les 32000 communes françaises, on le format pour avoir un format de wordlist comprehensible par john. On trouve la ville qui sert de mot de passe. On obtient un .bak en decompressant les archives. A l'interieur se trouvent des positions d'echec en notation algébriques mais avec des coups manquants. Il faut donc jouer la partie et tenter d'arriver au mat final pour reconstituer le fichier. Le flag est le md5sum de ce fichier reparé (a noter que 2 parties différentes peuvent être jouées, donnant lieu à 2 flags différents.)

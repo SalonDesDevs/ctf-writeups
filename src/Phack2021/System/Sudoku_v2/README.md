@@ -1,0 +1,5 @@
+# Sudoku v2 - 256 points
+
+Le challenge et le `note.txt` nous informent des astérisques affichés lors de l'usage de sudo, dont on peut effectivement confirmer la présence en essayant. Un des tags du challenge est `cve`, Common Vulnerability Exposure, soient les vulnérabilités affectant un nombre conséquent de services et dont on garde donc trace. Avec `sudo -V` on obtient la version de `sudo` sur la machine.
+Avec cette information on peut chercher une CVE possible sur Google [exploit-db](https://www.exploit-db.com/) parlant des astérisques et on trouve finalement la [CVE-2019-18634](https://www.exploit-db.com/exploits/48052) qui dispose même déjà d'un exploit tout prêt, dont les dépendances (`socat`) sont déjà sur la machine, bref le bonheur.
+On télécharge l'exploit et on l'exécute, et en quelques secondes on dispose d'un shell root, ce qui est plus que suffisant pour lire le flag.
