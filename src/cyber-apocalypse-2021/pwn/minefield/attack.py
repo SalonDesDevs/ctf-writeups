@@ -2,7 +2,7 @@ from pwn import *
 
 elf = ELF("./challenge/minefield")
 
-conn = remote('138.68.177.159', 32288)
+conn = remote(MACHINE_IP, MACHINE_PORT)
 
 with log.progress("retrieving flag") as progress:
     progress.status("choose to plant a mine");

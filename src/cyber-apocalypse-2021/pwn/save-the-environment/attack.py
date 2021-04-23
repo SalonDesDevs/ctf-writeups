@@ -3,7 +3,7 @@ from pwn import *
 elf = ELF("./challenge/environment")
 libc = ELF("./challenge/libc.so.6")
 
-conn = remote('138.68.178.56', 32312)
+conn = remote(MACHINE_IP, MACHINE_PORT)
 
 def prompt_answer(answer):
     conn.recvuntil("> ")

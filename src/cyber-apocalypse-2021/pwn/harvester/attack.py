@@ -3,7 +3,7 @@ from pwn import *
 elf = ELF("./challenge/harvester")
 libc = ELF("./challenge/libc.so.6")
 
-conn = remote('138.68.178.56', 30971)
+conn = remote(MACHINE_IP, MACHINE_PORT)
 
 def select_menu(menu):
     conn.recvuntil('> ')
