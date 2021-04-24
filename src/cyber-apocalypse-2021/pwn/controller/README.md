@@ -29,7 +29,7 @@ challenges).
 
 We will use a multiplication and we need to find `a` and `b` both under `70`
 that when multiplied together gives `65338` so here is our difficult computation
-`-32669 * -2 = 65338`a.
+`-32669 * -2 = 65338`.
 
 Now that we answered this difficult math question, we navigate the menus until
 we are asked for this payload.
