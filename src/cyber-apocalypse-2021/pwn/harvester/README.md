@@ -1,6 +1,6 @@
 # Pwn - Harvester
 
-This challenge is harder than the two others, first thing it's a PIEs.
+This challenge is harder than the two others, first thing it's a PIE.
 And it's full of canaries, so if we find a buffer overflow we'll need to set it
 to the correct value.
 
