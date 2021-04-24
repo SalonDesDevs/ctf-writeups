@@ -1,5 +1,8 @@
 [book]
-authors = ["Clément Guibout <clement.guibout@gmail.com>"]
+authors = [
+    "Clément Guibout <clement.guibout@gmail.com>",
+    "Arnaud Pascal <root@arnaud.sh>"
+]
 language = "fr"
 multilingual = false
 src = "src"
