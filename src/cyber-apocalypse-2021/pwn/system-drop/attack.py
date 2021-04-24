@@ -10,7 +10,7 @@ elf = ELF("system_drop")
 elf_rop = ROP(elf)
 
 # By analysing the binary we find a main function which does a buffer overflow
-# And the returns 1.
+# And then returns 1.
 # This is really useful because it means when we'll start the rop, 1 will be
 # loaded inside the `rax` register.
 # And this is great because we can find a function named `_syscall` that
