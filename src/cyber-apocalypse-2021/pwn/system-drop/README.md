@@ -4,8 +4,8 @@ The name of this challenge gives us a big hint. It's talking about a ROP.
 Unfortunately for the price of this hint we don't know which libc is being
 used, so returning on a specific function of the libc is going to be hard.
 
-By analysing the binary we find a main function which does a buffer overflow
-And then returns 1.
+By analysing the binary we find a main function which does a buffer overflow and
+then returns 1.
 This is really useful because it means when we'll start the rop, 1 will be
 loaded inside the `rax` register.
 And this is great because we can find a function named `_syscall` that
@@ -41,7 +41,7 @@ string inside the `rdi` register and then return to the system function.
 {{#include attack.py:retrieve_shell}}
 ```
 
-Now that we have a shell! All we need is to cat the flag!
+Now that we have a shell, all we need is to cat the flag!
 
 ```python
 {{#include attack.py:cat_flag}}

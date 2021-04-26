@@ -28,7 +28,7 @@ offset_overflow = b"A" * (0x28)
 # ANCHOR: fn_retrieve_libc_base
 def retrieve_libc_base():
     with log.progress("retrieving libc base") as progress:
-        # The payload will consists of the beginning garbage bytes then we will
+        # The payload will consist of the beginning garbage bytes then we will
         # leak the value of the `puts` function on the global offset table.
         # To do this we'll to load the address from where to print in the `rdi`
         # register (which is the first argument) so we use a gadget that will

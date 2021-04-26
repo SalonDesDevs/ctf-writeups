@@ -6,7 +6,7 @@ where condition and a win function.
 Unfortunately we can't just do the same exploit again.
 
 In this challenge you can recycle things in exchange of recycling point, with
-at least 10 recycling point we can ask to leak an arbitrary address.
+at least 10 recycling points we can ask to leak an arbitrary address.
 
 So first thing we need to do is to farm these recycling points.
 
