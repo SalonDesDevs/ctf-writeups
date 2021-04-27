@@ -18,6 +18,7 @@ For this, we first take a charactere that could be found in the damaged communic
 
 So the timing for the first bit of communication is `8.48μs`.
 We then compute \\( f = \frac{1}{8.48\times 10^{-6}}\\) where f is the baud value of the communication (which is roughly like a frequency)
+
 ![baud_deduction](https://i.imgur.com/KuvZhya.png)
 
 We then measure the timing of the next first bits. We found a timing of `13.46μs`. So by trying the same computation that above, we find a baud of `74294`. Trying this setting, the flag appears at the end of the logs. 
