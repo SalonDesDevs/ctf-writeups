@@ -1,1 +1,1 @@
-[CTF writeups](https://salondesdevs.github.io/ctf-writeups/index.html) from SDD
+[CTF writeups](https://sdd-ctf-writeups.netlify.app/) from SDD
