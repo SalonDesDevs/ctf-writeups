@@ -64,3 +64,5 @@
     - [System dROP](./cyber-apocalypse-2021/pwn/system-drop/README.md)
     - [Harvester](./cyber-apocalypse-2021/pwn/harvester/README.md)
     - [Save the environment](./cyber-apocalypse-2021/pwn/save-the-environment/README.md)
+  - [Hardware]()
+    - [Compromised](./cyber-apocalypse-2021/hardware/compromised/README.md)
