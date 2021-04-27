@@ -9,5 +9,5 @@ We can add a I²C analyzer on logic and extract the analysis to `dump.txt`.
 ```
 Then we will use a python script to find the flag. 
 ```python
-{{#include script.py:loading}}
+{{#include script.py}}
 ```

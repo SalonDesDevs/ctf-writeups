@@ -66,3 +66,4 @@
     - [Save the environment](./cyber-apocalypse-2021/pwn/save-the-environment/README.md)
   - [Hardware]()
     - [Compromised](./cyber-apocalypse-2021/hardware/compromised/README.md)
+    - [serial Logs](./cyber-apocalypse-2021/hardware/serial_logs/README.md)
