@@ -8,3 +8,6 @@ multilingual = false
 src = "src"
 title = "CTF Writeups"
 create-missing = false
+
+[output.html]
+mathjax-support = true
