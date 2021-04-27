@@ -1,1 +1,1 @@
-CTF writeups from SDD
+[CTF writeups](https://salondesdevs.github.io/ctf-writeups/index.html) from SDD
