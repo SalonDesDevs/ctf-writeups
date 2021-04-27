@@ -8,8 +8,11 @@ multilingual = false
 src = "src"
 title = "CTF Writeups"
 create-missing = false
+
 [output.html.fold]
 enable = true
+
 [output.html]
 git-repository-url = "https://github.com/salondesdevs/ctf-writeups"
 mathjax-support = true
+theme = "ayu"
