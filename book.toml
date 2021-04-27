@@ -15,4 +15,4 @@ enable = true
 [output.html]
 git-repository-url = "https://github.com/salondesdevs/ctf-writeups"
 mathjax-support = true
-theme = "ayu"
+preferred-dark-theme = "ayu"
