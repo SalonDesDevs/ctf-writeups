@@ -1,0 +1,3 @@
+[build]
+command = "./scripts/netlify-build.sh"
+publish = "./book"
